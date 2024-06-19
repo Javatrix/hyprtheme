@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <complex>
 #include <cstdlib>
 #include <cstring>
 #include <filesystem>
@@ -14,6 +13,10 @@
 #define HOME std::string(getenv("HOME"))
 #define THEME_LOCATION HOME + "/.config/hypr/.current-theme"
 #define THEMES_DIRECTORY HOME + "/.config/hypr/themes"
+
+std::string removeAfterLast(std::string s, char delimeter) {
+  return s.substr(0, s.find_last_of(delimeter));
+}
 
 void printUsage(char *name) {
   std::cout << '\n';
@@ -58,6 +61,24 @@ std::vector<std::string> themes() {
   return themes;
 }
 
+std::vector<std::string> filesToExport() {
+  std::vector<std::string> files;
+
+  std::ifstream fileList(HOME + "/.config/hypr/themes/.themefiles");
+  if (!fileList.is_open()) {
+    return files;
+  }
+
+  std::string line;
+  while (std::getline(fileList, line)) {
+    if (line.length() > 0) {
+      files.push_back(line);
+    }
+  }
+
+  return files;
+}
+
 bool themeExists(std::string theme) {
   std::vector<std::string> themeList = themes();
   return std::find(themeList.begin(), themeList.end(), theme) !=
@@ -94,18 +115,15 @@ bool createTheme(std::string themeName) {
   }
 
   system(std::string("mkdir " + THEMES_DIRECTORY + '/' + themeName).c_str());
-  system(std::string("cp -r " + HOME + "/.config/hypr/hyprland.conf " +
-                     THEMES_DIRECTORY + '/' + themeName)
-             .c_str());
-  system(std::string("cp -r " + HOME + "/.config/hypr/windowrules.conf " +
-                     THEMES_DIRECTORY + '/' + themeName)
-             .c_str());
-  system(std::string("cp -r " + HOME + "/.config/waybar " + THEMES_DIRECTORY +
-                     '/' + themeName + '/')
-             .c_str());
-  system(std::string("cp -r " + HOME + "/.config/gtk* " + THEMES_DIRECTORY +
-                     '/' + themeName + '/')
-             .c_str());
+  for (std::string fileToSave : filesToExport()) {
+    system(std::string("mkdir -p " + THEMES_DIRECTORY + '/' + themeName + '/' +
+                       removeAfterLast(fileToSave, '/'))
+               .c_str());
+    system(std::string("cp -r " + HOME + "/.config/" + fileToSave + ' ' +
+                       THEMES_DIRECTORY + '/' + themeName + '/' +
+                       removeAfterLast(fileToSave, '/') + '/')
+               .c_str());
+  }
   std::cout << "Created new theme.\n";
   return true;
 }
