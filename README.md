@@ -13,6 +13,12 @@ and you current configuration does not include this file, it will not be deleted
 and added to the .themefiles will get overwritten.
 
 # Installation
+### Arch Linux
+```sh
+git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && makepkg -si
+```
+
+## Other Distros
 ### Dependencies
 Before installing, make sure you have gcc installed.
 ### Build process
