@@ -19,6 +19,6 @@ build() {
 
 package() {
     cd "$srcdir/$pkgname-$pkgver"
-    mv hyprtheme ~/.local/bin
+    install -Dm755 hyprtheme "${pkgdir}/usr/bin/hyprtheme"
 }
 
