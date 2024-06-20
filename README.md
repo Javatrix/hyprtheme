@@ -19,7 +19,7 @@ Install it with yay
 yay -S hyprtheme
 ```
 or paru
-```
+```sh
 paru -S hyprtheme
 ```
 
@@ -28,7 +28,7 @@ paru -S hyprtheme
 Before installing, make sure you have gcc installed.
 ### Build process
 Execute the following to automatically clone, compile and move the file to your bin directory:
-```
+```sh
 git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && g++ -o hyprtheme src/* && sudo mv hyprtheme /usr/bin
 ```
 
