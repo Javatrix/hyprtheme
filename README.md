@@ -14,17 +14,22 @@ and added to the .themefiles will get overwritten.
 
 # Installation
 ### Arch Linux
+Install it with yay
 ```sh
-git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && makepkg -si
+yay -S hyprtheme
+```
+or paru
+```
+paru -S hyprtheme
 ```
 
 ## Other Distros
 ### Dependencies
 Before installing, make sure you have gcc installed.
 ### Build process
-Execute the following to automatically clone, compile and move the file to your local bin:
+Execute the following to automatically clone, compile and move the file to your bin directory:
 ```
-git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && g++ -o hyprtheme src/* && mv hyprtheme /usr/bin
+git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && g++ -o hyprtheme src/* && sudo mv hyprtheme /usr/bin
 ```
 
 # Configuring
