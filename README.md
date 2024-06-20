@@ -18,7 +18,7 @@ Before installing, make sure you have gcc installed.
 ### Build process
 Execute the following to automatically clone, compile and move the file to your local bin:
 ```
-git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && sh ./build.sh && mv ./hyprtheme ~/.local/bin
+git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && g++ -o hyprtheme src/* && mv ./hyprtheme ~/.local/bin
 ```
 
 # Configuring
