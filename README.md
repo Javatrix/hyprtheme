@@ -33,7 +33,7 @@ git clone https://github.com/Javatrix/hyprtheme && cd hyprtheme && g++ -o hyprth
 ```
 
 # Configuring
-List the files you want to save in `~/.config/hypr/themes/.themefiles` (the paths are relative to ~/.config/
+List the files you want to save in `~/.config/hypr/themes/.themefiles` (the paths are relative to ~/.config/ and any directories are added recursively.
 Example:
 ```
 hypr/hyprland.conf
