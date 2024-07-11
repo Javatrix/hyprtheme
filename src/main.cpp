@@ -116,9 +116,6 @@ bool createTheme(std::string themeName) {
 
   system(std::string("mkdir " + THEMES_DIRECTORY + '/' + themeName).c_str());
   for (std::string fileToSave : filesToExport()) {
-    system(std::string("mkdir -p " + THEMES_DIRECTORY + '/' + themeName + '/' +
-                       removeAfterLast(fileToSave, '/'))
-               .c_str());
     system(std::string("cp -r " + HOME + "/.config/" + fileToSave + ' ' +
                        THEMES_DIRECTORY + '/' + themeName + '/' +
                        removeAfterLast(fileToSave, '/') + '/')
